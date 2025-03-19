@@ -1,5 +1,6 @@
 export const createDb = `
-CREATE DATABASE IF NOT EXISTS week2;
+DROP DATABASE IF EXISTS week2;
+CREATE DATABASE week2;
 USE week2;
 `
 
