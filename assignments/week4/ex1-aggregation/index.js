@@ -68,18 +68,23 @@ const agrregator = async (cursor) => {
 
 const main = async () => {
   const client = new MongoClient(process.env.MONGODB_URL);
-  await client.connect();
-  const db = client.db("databaseWeek4");
-  const collection = db.collection('aggregation');
 
   try {
+    // Connect to db
+    await client.connect();
+    const db = client.db("databaseWeek4");
+    const collection = db.collection('aggregation');
+
+    // Aggregation queries
     const firstAggCursor = collection.aggregate(firstPipeline);
     const secondAggCursor = collection.aggregate(secondPipeline);
+
+    // Iterate over the results
     await agrregator(firstAggCursor);
     await agrregator(secondAggCursor);
 
   } catch (err) {
-    console.log(err);
+    console.error(err);
   } finally {
     client.close();
   }
