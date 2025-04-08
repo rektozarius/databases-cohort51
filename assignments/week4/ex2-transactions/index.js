@@ -16,9 +16,7 @@ const main = async () => {
     await setupAccounts(collection);
 
     // Set up a session and transfer balance
-    
     await transferAmount(client, collection, "101", "102", 1000);
-    
 
   } catch (err) {
     console.error(err.message);
